@@ -14,12 +14,11 @@ Create the following service with their respective APIs. We are going to structu
         - /getAllCustomers - Makes a query to the Customer Service to find all the Customers of the Library.
 
     2. Book Service
-        - /getAllBooks?libraryname=<library Name>   -Returns all the books assigned to the Library
-        - /getBookInfo/<ISBN>                        -Gives the information of the book
-        - /getLatestInfo/<ISBN>                      -Makes a query to the Internet to fetch the latest information on the Book.  
+        - /getAllBooks?libraryname=<library Name>   -Returns all the books ISBN ID assigned to the Library
+        - /getBookInfo/<ISBN>                        -Queries outside the interenet to fetch the information of the book
 
     3. Customer Service
-        - /getAllCustomers?unitname=<Unit Name>     -Return all the customer who have subscribed for the unit.
+        - /getAllCustomers?unitname=<Unit Name>     -Return all the customer ID who have subscribed for the unit.
 
 For the sake of simplicity we are not going to have a Database Backend. We are going to mock the data.The mocked data can be found in the .json files.
 
