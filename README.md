@@ -1,8 +1,6 @@
 The Goal is to use Istio to showcase how applications can use it.
 
-Step 1:
-
-Create the following service with their respective APIs. We are going to structure the Library inside University.
+Step 1: Create the following service with their respective APIs. We are going to structure the Library inside University.
 
     -There are multilple libraries inside the University.
     -BookService holds all books info avaiable inside the University.
@@ -22,7 +20,7 @@ Create the following service with their respective APIs. We are going to structu
 
 For the sake of simplicity we are not going to have a Database Backend. We are going to mock the data.The mocked data can be found in the .json files.
 
-Next Steps- Implement the APIs 
+Step 2: Dockerize the Services 
 
 
 
