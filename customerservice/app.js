@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var app = express();
 
 app.use(logger('dev'));
+app.disable('etag');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());

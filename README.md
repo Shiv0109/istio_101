@@ -20,7 +20,40 @@ Step 1: Create the following service with their respective APIs. We are going to
 
 For the sake of simplicity we are not going to have a Database Backend. We are going to mock the data.The mocked data can be found in the .json files.
 
-Step 2: Dockerize the Services 
+Step 2: Dockerize the Services..write docker files.
+Step 3: Create docker images for the services by running the docker files
+
+    cd customerservice
+    docker build -t customerservice_image .
+
+    cd bookservice
+    docker build -t booksercice_image .
+
+    cd libraryservice
+    docker build -t libraryservice_image .
+
+Step 4: Write yaml files for Kubernates without any istio dependencies(while deploying we will inject the sidecar dependencies required for Istio)
+
+Step 5.1: Create the services by deploying to kubernates.Without any Istio ingress.Plain old Kubernates style.
+    set the environment variables with --->eval $(minikube docker-env)
+    Get the minikube ip----->minikube ip
+
+    Deploy the Customer App and create a Customer Service
+    cd customerservice/kube
+    kubectl apply -f deploy_customerservice.yaml
+
+    Check if the application is running on 
+    <minikube-ip>:port/customers/ping
+    Also you can use
+    minikube service customerservice
+
+    Follow the same procedure for all the other services as well.
+
+Step 5.2: Deploy using the istion ingress
+
+
+
+
 
 
 
