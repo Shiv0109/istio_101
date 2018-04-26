@@ -15,12 +15,12 @@ spec:
         name: bookapp
     spec:
       containers:
-      - image: bookservice_image  
+      - image: bookservice:v2
         name: bookapp
         imagePullPolicy: Never #only for local pickup 
         ports:
         - containerPort: 9400 #the port in which the node application is running
-          protocol: TCP
+          #protocol: http
 
 ---
 
@@ -32,12 +32,12 @@ metadata:
   name: bookservice
 spec:
   ports:
-  - port: 8300 # the service is accesible by the outside world on this port
+  - port: 9400 # the service is accesible by the outside world on this port
     protocol: TCP
-    targetPort: 9400 #map the port to the running application port
+    #targetPort: 9400 #map the port to the running application port
   selector:
     name: bookapp
-  type: NodePort 
+  type: ClusterIP 
   #ClusterIP->internal access 
   #NodePort, as the name implies, opens a specific port on all the Nodes any traffic that is sent to this port is forwarded to the service
   #LoadBalancer service is the standard way to expose a service to the internet

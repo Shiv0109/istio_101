@@ -4,8 +4,11 @@ var rp = require('request-promise');
 var router = express.Router();
 let libraryName = "lib_iris";
 
-let customerServiceHost = "http://localhost:9500";
-let bookServiceHost = "http://localhost:9400";
+let customerServiceHostLocal = "http://localhost:9500";
+let bookServiceHostLocal = "http://localhost:9400";
+
+let customerServiceHost_onKube = "http://customerservice:9500";
+let bookserviceHost_onKube = "http://bookservice:9400";
 
 /* GET home page. */
 router.get('/ping', function (req, res, next) {
@@ -19,8 +22,8 @@ router.get('/getLibraryName', function (req, res, next) {
 
 
 router.get('/getAllCustomers', function (req, res, next) {
-    let customerUrl = customerServiceHost + "/customers/getAllCustomers?unitname=" + libraryName
-    console.log(customerUrl)
+    let customerUrl = customerServiceHost_onKube + "/customers/getAllCustomers?unitname=" + libraryName
+    console.log("Queried Url-" + customerUrl)
 
     rp(customerUrl)
         .then(function (data) {
@@ -35,9 +38,10 @@ router.get('/getAllCustomers', function (req, res, next) {
 });
 
 router.get('/getAllBooks', function (req, res, next) {
-    let customerUrl = bookServiceHost + "/books/getAllBooks?libraryname=" + libraryName
+    let bookserviceUrl = bookserviceHost_onKube + "/books/getAllBooks?libraryname=" + libraryName
+    console.log("Queried Url-" + bookserviceUrl)
 
-    rp(customerUrl)
+    rp(bookserviceUrl)
         .then(function (data) {
             res.json(data);
         })
