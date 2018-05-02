@@ -59,7 +59,23 @@ Step 5.1: Create the services by deploying to kubernates.Without any Istio ingre
     Now the services should be able to communicate between themselves.
 
 
-Step 5.2: Deploy using the istion ingress
+Step 5.2: Install ISTIO
+Step 5.3: Inject istio configuration within the .yaml files.
+    kubectl apply -f <(istioctl kube-inject -f deploy_customerservice_istio.yaml)
+    kubectl apply -f <(istioctl kube-inject -f deploy_bookservice_istio.yaml)
+    kubectl apply -f <(istioctl kube-inject -f deploy_libraryservice_istio.yaml)
+    kubectl apply -f ingress.yaml
+
+Step 5.4: Generate a Service Graph
+    https://istio.io/docs/tasks/telemetry/servicegraph.html
+
+Step 5.5: Check the analytics via Graphana
+    https://istio.io/docs/tasks/telemetry/using-istio-dashboard.html
+
+
+
+    
+    
 
 
 

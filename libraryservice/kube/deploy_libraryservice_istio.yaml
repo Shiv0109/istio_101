@@ -1,0 +1,42 @@
+# APP DEPLOYMENT
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: libraryapp
+spec:
+  replicas: 1 #tell how many pods I want to have
+  selector:
+    matchLabels:
+      name: libraryapp
+  template:
+    metadata:
+      labels:
+        name: libraryapp
+    spec:
+      containers:
+      - image: libraryservice:v3
+        name: libraryapp
+        imagePullPolicy: Never #only for local pickup 
+        ports:
+        - containerPort: 9300 #the port in which the node application is running
+---
+
+# APP SERVICE
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: libraryservice
+spec:
+  ports:
+  - port: 9300 # the service is accesible by the outside world on this port
+    protocol: TCP
+    #targetPort: 9300 #map the port to the running application port
+  selector:
+    name: libraryapp
+  type: NodePort 
+  #ClusterIP->internal access 
+  #NodePort, as the name implies, opens a specific port on all the Nodes any traffic that is sent to this port is forwarded to the service
+  #LoadBalancer service is the standard way to expose a service to the internet
+  #Ingress is actually NOT a type of service. Instead, it sits in  
